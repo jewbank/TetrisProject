@@ -1,5 +1,5 @@
 
-public class BadBrain implements Brain {
+public class DarrenBrain implements Brain {
 
 	@Override
 	public Move bestMove(Board board, Piece piece, int limitHeight, Move move) {

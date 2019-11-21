@@ -5,7 +5,7 @@ public class JBrainTetris extends JTetris {
 	
 	JBrainTetris(int width, int height) {
 		super(width, height);
-		brain = new BadBrain();
+		brain = new DarrenBrain();
 	}
 	public void tick(int verb)
 	{
