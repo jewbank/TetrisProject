@@ -74,7 +74,8 @@ public class DarrenBrain implements Brain {
 		
 		int sumHeight = 0;
 		int holes = 0;
-		
+		int prevColHeight = 0;
+		int bigDips = 0;
 		// Count the holes, and sum up the heights
 		for (int x=0; x<width; x++) {
 			final int colHeight = board.getColumnHeight(x);
@@ -88,20 +89,25 @@ public class DarrenBrain implements Brain {
 				}
 				y--;
 			}
+			
+			int delHeight = prevColHeight -colHeight;
+			
+			if(x != 0 && (delHeight > 1 || delHeight < -2))
+			{
+				bigDips++;
+			}
+			prevColHeight = colHeight;
 		}
 		
+		
 		double avgHeight = ((double)sumHeight)/width;
+		double flatness = avgHeight % 1;
 		
 		// Add up the counts to make an overall score
 		// The weights, 8, 40, etc., are just made up numbers that appear to work
-		if(maxHeight > board.getHeight() / 2)
-		{
-			return (40*maxHeight + 25*avgHeight + 30*holes);
-		}
-		else 
-		{
-			return (10*maxHeight + 20*avgHeight + 25*holes);	
-		}
+		
+		return (4*maxHeight + 10*avgHeight + 15*holes + 10*flatness + 15*bigDips);	
+		
 	}
 	
 }
