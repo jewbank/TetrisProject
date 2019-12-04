@@ -18,6 +18,11 @@ public class JBrainTetris extends JTetris {
 		});
 	}
 	
+	JBrainTetris(int width, int height, Brain b) {
+		this(width, height);
+		brain = b;
+	}
+	
 	@Override
 	public void startGame()
 	{
